@@ -85,6 +85,17 @@ if __name__ == '__main__':
         # 推送内容 
         title = f'# 未找到 cookies!'
 
-    # 推送消息
-    pushdeer = PushDeer(pushkey=sckey) 
-    pushdeer.send_text(title, desp=context)
+    # 推送消息（修改后的部分）
+    if sckey:
+        try:
+            pushdeer = PushDeer(pushkey=sckey)
+            pushdeer.send_text(title, desp=context)
+            print("推送消息成功")
+        except Exception as e:
+            print(f"推送消息失败: {str(e)}")
+    else:
+        print("未设置 SENDKEY，跳过推送通知")
+
+    # 打印结果到控制台
+    print(title)
+    print(context)
